@@ -5,16 +5,20 @@ public class Main {
         System.out.println("Введите фамилию, имя и отчество:");
         Scanner scanner = new Scanner(System.in);
         String fullName = scanner.nextLine();
-        String[] splitedName = fullName.trim().split("\\s+");
-
-        if (splitedName.length > 0 && splitedName[0] != null && !splitedName[0].isEmpty()) {
-            System.out.println("Фамилия: " + splitedName[0]);
-        }
-        if (splitedName.length > 1 && splitedName[1] != null) {
-            System.out.println("Имя: " + splitedName[1]);
-        }
-        if (splitedName.length > 2 && splitedName[2] != null) {
-            System.out.println("Отчество: " + splitedName[2]);
+        scanner.close();
+        fullName = fullName.trim();
+        int surnameIndex = fullName.indexOf(" ");
+        int patronymicIndex = fullName.lastIndexOf(" ");
+        if (fullName.length() > 0 && surnameIndex > 0) {
+            System.out.println("Фамилия: " + fullName.substring(0, surnameIndex));
+            if (patronymicIndex > surnameIndex) {
+                System.out.println("Имя: " + fullName.substring(surnameIndex, patronymicIndex));
+                System.out.println("Отчество: " + fullName.substring(patronymicIndex));
+            } else {
+                System.out.println("Имя: " + fullName.substring(surnameIndex));
+            }
+        } else {
+            System.out.println("Некорректный ввод");
         }
     }
 }
