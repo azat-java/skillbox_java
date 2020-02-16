@@ -15,5 +15,8 @@ public class Main {
             System.out.println(i + " - " + nextBirthday.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")) + " - " + nextBirthday.getDayOfWeek().getDisplayName(TextStyle.FULL, localeRu));
             nextBirthday = nextBirthday.plusYears(1);
         }
+        int y = 9;
+        int o = y++;
+        System.out.println(y + " " + o);
     }
 }
