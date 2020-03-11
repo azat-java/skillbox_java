@@ -11,7 +11,8 @@ public class Main {
             if (phone.length() == 11) {
                 phone = phone.substring(1);
             }
-            System.out.println("+7 " + phone.substring(0, 3) + " " + phone.substring(3, 6) + "-" + phone.substring(6, 8) + "-" + phone.substring(8, 10));
+            String formattedPhone = phone.replaceAll("(\\d{3})(\\d{3})(\\d{2})(\\d{2})", "+7 $1 $2-$3-$4");
+            System.out.println(formattedPhone);
         } else {
             System.out.println("Некорректный ввод");
         }

@@ -11,7 +11,7 @@ public class Main {
 
         String[] words = text.trim().split("\\s+");
         for (int i = 0; i < words.length; i++) {
-            System.out.println(words[i].replaceAll("[,.“”]", ""));
+            System.out.println(words[i].replaceAll("\\p{Punct}", ""));
         }
     }
 }
