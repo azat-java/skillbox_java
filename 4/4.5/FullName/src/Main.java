@@ -6,7 +6,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String fullName = scanner.nextLine();
         scanner.close();
-        if (fullName.trim().matches("([А-ЯЁ][а-яё]+[\\-\\s]?){3}")) {
+        if (fullName.trim().matches("([А-ЯЁ][а-яё]+[\\s]+){2}([А-ЯЁ][а-яё]+)")) {
             String[] splitedName = fullName.trim().split("\\s+");
             System.out.println("Фамилия: " + splitedName[0]);
             System.out.println("Имя: " + splitedName[1]);
