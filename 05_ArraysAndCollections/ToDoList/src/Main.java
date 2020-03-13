@@ -4,9 +4,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         ArrayList<String> toDoList = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Введите команду: ");
-            Scanner scanner = new Scanner(System.in);
             String commandLine = scanner.nextLine();
             commandLine.trim();
             String commands[] = commandLine.split("\\s+");
