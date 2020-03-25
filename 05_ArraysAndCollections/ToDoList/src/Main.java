@@ -2,11 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-    ArrayList<String> toDoList = new ArrayList<>();
+    static ArrayList<String> toDoList = new ArrayList<>();
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Main main = new Main();
         while (true) {
             System.out.println("Введите команду: ");
             String commandLine = scanner.nextLine();
@@ -15,24 +14,24 @@ public class Main {
             if (commands.length == 0) {
                 continue;
             } else if (commands[0].equals("LIST")) {
-                main.printList();
+                printList();
             } else if (commands[0].equals("ADD")) {
-                main.add(commands);
-            } else if (commands[0].equals("EDIT") && commands.length >= 3 && commands[1].matches("[0-9]+") && Integer.parseInt(commands[1]) < main.toDoList.size()) {
-                main.edit(commands);
-            } else if (commands[0].equals("DELETE") && commands.length == 2 && commands[1].matches("[0-9]+") && Integer.parseInt(commands[1]) < main.toDoList.size()) {
-                main.delete(Integer.parseInt(commands[1]));
+                add(commands);
+            } else if (commands[0].equals("EDIT") && commands.length >= 3 && commands[1].matches("[0-9]+") && Integer.parseInt(commands[1]) < toDoList.size()) {
+                edit(commands);
+            } else if (commands[0].equals("DELETE") && commands.length == 2 && commands[1].matches("[0-9]+") && Integer.parseInt(commands[1]) < toDoList.size()) {
+                delete(Integer.parseInt(commands[1]));
             }
         }
     }
 
-    void printList() {
+    static void printList() {
         for (int i = 0; i < toDoList.size(); i++) {
             System.out.println(i + " " + toDoList.get(i));
         }
     }
 
-    void add(String commands[]) {
+    static void add(String commands[]) {
         if (commands.length >= 2) {
             int taskStartsFrom;
             int priority = toDoList.size();
@@ -54,7 +53,7 @@ public class Main {
         }
     }
 
-    void edit(String commands[]) {
+    static void edit(String commands[]) {
         String task = "";
         for (int i = 2; i < commands.length; i++) {
             task += commands[i] + " ";
@@ -64,7 +63,7 @@ public class Main {
         }
     }
 
-    void delete(int task) {
+    static void delete(int task) {
         toDoList.remove(task);
     }
 }
