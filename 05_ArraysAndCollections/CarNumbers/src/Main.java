@@ -32,7 +32,7 @@ public class Main {
             System.out.print("Бинарный поиск: ");
             start = System.nanoTime();
             int binarySearch = Collections.binarySearch(carNumbers, carNumber);
-            duration = System.nanoTime();
+            duration = System.nanoTime() - start;
             if (binarySearch >= 0) {
                 System.out.printf("номер найден, поиск занял %d нс\n", duration);
             } else {
