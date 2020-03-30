@@ -4,9 +4,9 @@ import java.math.BigDecimal;
 import java.util.Calendar;
 
 public class Debit extends Account {
-    public Calendar lastPut;
+    private Calendar lastPut;
 
-    public void getMoney(BigDecimal money) {
+    protected void getMoney(BigDecimal money) {
         Calendar isExpired = lastPut;
         isExpired.add(Calendar.MONTH, 1);
         Calendar now = Calendar.getInstance();

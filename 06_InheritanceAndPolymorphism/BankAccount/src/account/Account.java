@@ -3,15 +3,15 @@ package account;
 import java.math.BigDecimal;
 
 public class Account {
-    public BigDecimal balance;
+    private BigDecimal balance;
 
-    public void putMoney(BigDecimal money) {
+    protected void putMoney(BigDecimal money) {
         if (balance.compareTo(money) > 0) {
             balance.add(money);
         }
     }
 
-    public void getMoney(BigDecimal money) {
+    protected void getMoney(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance.subtract(money);
         } else {
@@ -19,7 +19,7 @@ public class Account {
         }
     }
 
-    public BigDecimal getBalance() {
+    protected BigDecimal getBalance() {
         return balance;
     }
 }
