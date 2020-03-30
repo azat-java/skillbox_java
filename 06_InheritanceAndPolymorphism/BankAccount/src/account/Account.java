@@ -1,23 +1,25 @@
 package account;
 
-public class Account {
-    public float balance;
+import java.math.BigDecimal;
 
-    public void putMoney(float money) {
-        if (money > 0) {
-            balance += money;
+public class Account {
+    public BigDecimal balance;
+
+    public void putMoney(BigDecimal money) {
+        if (balance.compareTo(money) > 0) {
+            balance.add(money);
         }
     }
 
-    public void getMoney(float money) {
-        if (balance >= money) {
-            balance -= money;
+    public void getMoney(BigDecimal money) {
+        if (balance.compareTo(money) >= 0) {
+            balance.subtract(money);
         } else {
             System.out.println("Недостаточно средств");
         }
     }
 
-    public float getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 }

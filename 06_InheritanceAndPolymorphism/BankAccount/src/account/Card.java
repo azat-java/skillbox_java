@@ -1,19 +1,14 @@
 package account;
 
+import java.math.BigDecimal;
+
 public class Card extends Account {
-    public float balance;
 
-    public void getMoney(float money) {
-        if (balance >= money) {
-            float withFee = money + money / 100;
-            if (balance >= withFee) {
-                balance -= money;
-            } else {
-                System.out.println("Недостаточно средств для комиссии");
-            }
-        } else {
-            System.out.println("Недостаточно средств");
-        }
+    final static float CASH_COMISSION_PERCENT = 1;
+
+    public void getMoney(BigDecimal money) {
+        BigDecimal fee = money.multiply(BigDecimal.valueOf(CASH_COMISSION_PERCENT)).divide(new BigDecimal(100));
+        BigDecimal withFee = money.add(fee);
+        super.getMoney(withFee);
     }
-
 }
