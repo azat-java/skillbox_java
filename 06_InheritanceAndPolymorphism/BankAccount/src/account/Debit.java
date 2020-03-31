@@ -10,7 +10,7 @@ public class Debit extends Account {
         Calendar isExpired = lastPut;
         isExpired.add(Calendar.MONTH, 1);
         Calendar now = Calendar.getInstance();
-        if (now.compareTo(isExpired) > 0) {
+        if (now.after(isExpired)) {
             super.getMoney(money);
         } else {
             System.out.println("С момента последнего пополнения прошло меньше месяца");
