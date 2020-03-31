@@ -6,7 +6,7 @@ public class Account {
     private BigDecimal balance;
 
     protected void putMoney(BigDecimal money) {
-        if (balance.compareTo(money) > 0) {
+        if (money.compareTo(BigDecimal.valueOf(0)) > 0) {
             balance.add(money);
         }
     }
