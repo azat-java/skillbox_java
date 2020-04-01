@@ -3,11 +3,11 @@ package account;
 import java.math.BigDecimal;
 
 public class Account {
-    private BigDecimal balance;
+    private BigDecimal balance = new BigDecimal(0);
 
     protected void putMoney(BigDecimal money) {
         if (money.compareTo(BigDecimal.valueOf(0)) > 0) {
-            balance.add(money);
+            balance = balance.add(money);
         }
     }
 

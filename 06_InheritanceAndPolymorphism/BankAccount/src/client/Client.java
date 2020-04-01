@@ -2,16 +2,16 @@ package client;
 
 import java.math.BigDecimal;
 
-abstract class Client {
-    private BigDecimal balance;
+public abstract class Client {
+    private BigDecimal balance = new BigDecimal(0);
 
-    protected void putMoney(BigDecimal money) {
+    void putMoney(BigDecimal money) {
         if (money.compareTo(BigDecimal.valueOf(0)) > 0) {
-            balance.add(money);
+            balance = balance.add(money);
         }
     }
 
-    protected void getMoney(BigDecimal money) {
+    void getMoney(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
             balance.subtract(money);
         } else {
@@ -19,7 +19,7 @@ abstract class Client {
         }
     }
 
-    protected BigDecimal getBalance() {
+    BigDecimal getBalance() {
         return balance;
     }
 }

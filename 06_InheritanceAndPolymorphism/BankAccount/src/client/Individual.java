@@ -7,7 +7,7 @@ public class Individual extends Client {
     private final static float PUT_COMMISSION_PERCENT_2 = 0.5f;
     private final static float COMMISSION_CONDITION = 1000;
 
-    protected void putMoney(BigDecimal money) {
+    void putMoney(BigDecimal money) {
         float commission;
         if (money.compareTo(BigDecimal.valueOf(COMMISSION_CONDITION)) < 0) {
             commission = PUT_COMMISSION_PERCENT_1;
