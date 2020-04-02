@@ -6,7 +6,7 @@ import java.util.Calendar;
 public class Debit extends Account {
     private Calendar lastPut;
 
-    protected void getMoney(BigDecimal money) {
+    public void getMoney(BigDecimal money) {
         Calendar isExpired = lastPut;
         isExpired.add(Calendar.MONTH, 1);
         Calendar now = Calendar.getInstance();

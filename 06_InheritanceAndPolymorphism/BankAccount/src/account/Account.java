@@ -5,21 +5,21 @@ import java.math.BigDecimal;
 public class Account {
     private BigDecimal balance = new BigDecimal(0);
 
-    protected void putMoney(BigDecimal money) {
+    public void putMoney(BigDecimal money) {
         if (money.compareTo(BigDecimal.valueOf(0)) > 0) {
             balance = balance.add(money);
         }
     }
 
-    protected void getMoney(BigDecimal money) {
+    public void getMoney(BigDecimal money) {
         if (balance.compareTo(money) >= 0) {
-            balance.subtract(money);
+            balance = balance.subtract(money);
         } else {
             System.out.println("Недостаточно средств");
         }
     }
 
-    protected BigDecimal getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 }
