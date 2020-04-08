@@ -1,3 +1,9 @@
+import company.Company;
+import employee.Manager;
+import employee.Operator;
+import employee.TopManager;
+import employee.Worker;
+
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -8,14 +14,12 @@ public class Main {
         for (int i = 0; i < 180; i++) {
             skillbox.hire(new Operator("operator num. " + i, new BigDecimal("25000"), skillbox));
         }
-
         ArrayList<Worker> managers = new ArrayList<>();
         for (int i = 0; i < 80; i++) {
             int income = new Random().nextInt(1400000);
             managers.add(new Manager("manager num. " + i, BigDecimal.valueOf(30000), skillbox, BigDecimal.valueOf(income)));
         }
         skillbox.hireAll(managers);
-
         for (int i = 0; i < 10; i++) {
             skillbox.hire(new TopManager("top manager num. " + i, new BigDecimal("100000"), skillbox));
         }

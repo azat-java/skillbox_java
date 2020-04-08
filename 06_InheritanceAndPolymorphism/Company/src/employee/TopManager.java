@@ -1,10 +1,14 @@
+package employee;
+
+import company.Company;
+
 import java.math.BigDecimal;
 
 public class TopManager extends Worker implements Employee {
     private final BigDecimal SALES_PLAN = new BigDecimal("10000000");
     private final BigDecimal BONUS_PERCENT = new BigDecimal("150");
 
-    TopManager(String name, BigDecimal wage, Company company) {
+    public TopManager(String name, BigDecimal wage, Company company) {
         super(name, wage, company);
     }
 

@@ -1,8 +1,12 @@
+package employee;
+
+import company.Company;
+
 import java.math.BigDecimal;
 
 public class Operator extends Worker implements Employee {
 
-    Operator(String name, BigDecimal salary, Company company) {
+    public Operator(String name, BigDecimal salary, Company company) {
         super(name, salary, company);
     }
 

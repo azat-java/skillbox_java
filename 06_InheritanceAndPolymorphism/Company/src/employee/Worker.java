@@ -1,6 +1,10 @@
+package employee;
+
+import company.Company;
+
 import java.math.BigDecimal;
 
-abstract class Worker implements Employee, Comparable<Worker> {
+public abstract class Worker implements Employee, Comparable<Worker> {
     private String name;
     private BigDecimal wage;
     Company company;
@@ -18,11 +22,6 @@ abstract class Worker implements Employee, Comparable<Worker> {
 
     public String getName() {
         return name;
-    }
-
-    @Override
-    public BigDecimal getIncome() {
-        return income;
     }
 
     @Override

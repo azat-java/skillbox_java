@@ -1,9 +1,13 @@
+package employee;
+
+import company.Company;
+
 import java.math.BigDecimal;
 
-public class Manager extends Worker implements Employee {
+public class Manager extends Worker implements IncomeReceivable {
     private final BigDecimal BONUS_PERCENT = new BigDecimal("5");
 
-    Manager(String name, BigDecimal wage, Company company, BigDecimal income) {
+    public Manager(String name, BigDecimal wage, Company company, BigDecimal income) {
         super(name, wage, company);
         this.income = income;
     }
@@ -14,4 +18,10 @@ public class Manager extends Worker implements Employee {
         BigDecimal salary = this.getWage().add(bonus);
         return salary;
     }
+
+    @Override
+    public BigDecimal getIncome() {
+        return income;
+    }
+
 }
