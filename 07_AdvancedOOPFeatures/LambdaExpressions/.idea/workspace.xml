@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="baabd658-2e59-4748-887f-1bdd396c992b" name="Default Changelist" comment="">
+    <list default="true" id="baabd658-2e59-4748-887f-1bdd396c992b" name="Default Changelist" comment="HW 7.2 done">
       <change beforePath="$PROJECT_DIR$/../../05_ArraysAndCollections/EmailList/out/production/EmailList/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../05_ArraysAndCollections/EmailList/out/production/EmailList/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../05_ArraysAndCollections/Temperatures/out/production/Temperatures/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../05_ArraysAndCollections/Temperatures/out/production/Temperatures/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LambdaExpressions.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/staff.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LambdaExpressions/Employee.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/LambdaExpressions/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Employee.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LambdaExpressions/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/LambdaExpressions/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -72,7 +69,14 @@
       <option name="project" value="LOCAL" />
       <updated>1586210633513</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="HW 7.2 done">
+      <created>1586210941412</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1586210941412</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -80,38 +84,42 @@
     <option name="LAST_COMMIT_MESSAGE" value="HW 7.2 done" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="0" key="CommitChangelistDialog2" timestamp="1586210630596">
+    <state x="370" y="0" key="CommitChangelistDialog2" timestamp="1586211097690">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="585" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1586210630596" />
-    <state width="597" height="189" key="GridCell.Tab.0.bottom" timestamp="1586210808785">
+    <state x="370" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1586211097690" />
+    <state x="741" y="100" key="FileChooserDialogImpl" timestamp="1586256421996">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="597" height="189" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1586210808785" />
-    <state width="597" height="189" key="GridCell.Tab.0.center" timestamp="1586210808785">
+    <state x="741" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1586256421996" />
+    <state width="597" height="183" key="GridCell.Tab.0.bottom" timestamp="1586369660826">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="597" height="189" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1586210808785" />
-    <state width="597" height="189" key="GridCell.Tab.0.left" timestamp="1586210808785">
+    <state width="597" height="183" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1586369660826" />
+    <state width="597" height="183" key="GridCell.Tab.0.center" timestamp="1586369660825">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="597" height="189" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1586210808785" />
-    <state width="597" height="189" key="GridCell.Tab.0.right" timestamp="1586210808785">
+    <state width="597" height="183" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1586369660825" />
+    <state width="597" height="183" key="GridCell.Tab.0.left" timestamp="1586369660825">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="597" height="189" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1586210808785" />
+    <state width="597" height="183" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1586369660825" />
+    <state width="597" height="183" key="GridCell.Tab.0.right" timestamp="1586369660826">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="597" height="183" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1586369660826" />
     <state x="674" y="61" key="MultipleFileMergeDialog" timestamp="1586210772649">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="674" y="61" key="MultipleFileMergeDialog/0.0.1280.689@0.0.1280.689" timestamp="1586210772649" />
-    <state x="466" y="78" key="Vcs.Push.Dialog.v2" timestamp="1586210645461">
+    <state x="466" y="78" key="Vcs.Push.Dialog.v2" timestamp="1586210951760">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="466" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1586210645461" />
-    <state x="770" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586210897116">
+    <state x="466" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1586210951760" />
+    <state x="770" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586211082137">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="770" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1586210897116" />
+    <state x="770" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1586211082137" />
   </component>
   <component name="masterDetails">
     <states>
