@@ -22,6 +22,15 @@ public class Main {
         for (Employee employee : staff) {
             System.out.println(employee);
         }
+
+        System.out.println("\nHighest salary of employee, who started in 2017:");
+        Date dateFrom = new Date(2017 - 1900, 0, 01);
+        Date dateTo = new Date(2017 - 1900, 11, 31);
+
+        staff.stream()
+                .filter(e -> e.getWorkStart().after(dateFrom) && e.getWorkStart().before(dateTo))
+                .max(Comparator.comparing(Employee::getSalary))
+                .ifPresent(System.out::println);
     }
 
 
