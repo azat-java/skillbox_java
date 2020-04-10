@@ -38,7 +38,7 @@ public class Company {
         BigDecimal income = new BigDecimal("0");
         while (itr.hasNext()) {
             if (itr.next() instanceof IncomeReceivable) {
-                income = income.add(((Manager) itr.next()).getIncome());
+                income = income.add(((IncomeReceivable)itr.next()).getIncome());
             }
         }
         return income;
@@ -55,13 +55,11 @@ public class Company {
     }
 
     public List<Employee> getTopSalaryStaff(int count) {
-        Iterator<Worker> itr = employees.descendingIterator();
-        return getSalaries(itr, count);
+        return getSalaries(employees.descendingIterator(), count);
     }
 
     public List<Employee> getLowestSalaryStaff(int count) {
-        Iterator<Worker> itr = employees.iterator();
-        return getSalaries(itr, count);
+        return getSalaries(employees.iterator(), count);
     }
 
     public void printTopSalaries(int count) {

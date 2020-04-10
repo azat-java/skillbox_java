@@ -1,8 +1,5 @@
 import company.Company;
-import employee.Manager;
-import employee.Operator;
-import employee.TopManager;
-import employee.Worker;
+import employee.*;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -22,6 +19,10 @@ public class Main {
         skillbox.hireAll(managers);
         for (int i = 0; i < 10; i++) {
             skillbox.hire(new TopManager("top manager num. " + i, new BigDecimal("100000"), skillbox));
+        }
+
+        for (int i = 0; i < 40; i++) {
+            skillbox.hire(new Salesman("salesman num. " + i, skillbox));
         }
 
         skillbox.printTopSalaries(15);
