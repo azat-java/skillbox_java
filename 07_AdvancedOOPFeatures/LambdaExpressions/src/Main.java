@@ -2,6 +2,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.*;
 import java.util.stream.Stream;
 
@@ -24,8 +26,13 @@ public class Main {
         }
 
         System.out.println("\nHighest salary of employee, who started in 2017:");
-        Date dateFrom = new Date(2017 - 1900, 0, 01);
-        Date dateTo = new Date(2017 - 1900, 11, 31);
+
+        Date dateFrom = java.util.Date.from(LocalDate.of(2017, 1, 1).atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
+        Date dateTo = java.util.Date.from(LocalDate.of(2017, 12, 31).atStartOfDay()
+                .atZone(ZoneId.systemDefault())
+                .toInstant());
 
         staff.stream()
                 .filter(e -> e.getWorkStart().after(dateFrom) && e.getWorkStart().before(dateTo))
