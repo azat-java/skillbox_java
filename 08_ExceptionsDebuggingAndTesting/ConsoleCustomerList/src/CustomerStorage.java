@@ -1,3 +1,7 @@
+import exceptions.NotValidEmailException;
+import exceptions.NotValidNewCustomerException;
+import exceptions.NotValidPhoneException;
+
 import java.util.HashMap;
 import java.util.regex.Pattern;
 
@@ -12,19 +16,10 @@ public class CustomerStorage {
 
     public void addCustomer(String data) {
         String[] components = data.split("\\s+");
-        if (components.length != 4) {
-            throw new IllegalArgumentException("Wrong command! Available command example:\n" +
-                    "add Василий Петров vasily.petrov@gmail.com +79215637722");
-        }
+        if (components.length != 4) throw new NotValidNewCustomerException();
         String name = components[0] + " " + components[1];
-        if (!Pattern.compile(REG_PHONE).matcher(components[3]).matches()) {
-            throw new IllegalArgumentException("Wrong format of phone! Available format example:\n" +
-                    "+79215637722");
-        }
-        if (!Pattern.compile(REG_EMAIL).matcher(components[2]).matches()) {
-            throw new IllegalArgumentException("Wrong format of email! Available format example:\n" +
-                    "vasily.petrov@gmail.com");
-        }
+        if (!Pattern.compile(REG_PHONE).matcher(components[3]).matches()) throw new NotValidPhoneException();
+        if (!Pattern.compile(REG_EMAIL).matcher(components[2]).matches()) throw new NotValidEmailException();
         storage.put(name, new Customer(name, components[3], components[2]));
     }
 

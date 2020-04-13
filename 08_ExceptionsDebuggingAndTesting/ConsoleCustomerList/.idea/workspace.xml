@@ -7,7 +7,7 @@
       <change beforePath="$PROJECT_DIR$/../../07_AdvancedOOPFeatures/LambdaExpressions/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../07_AdvancedOOPFeatures/LambdaExpressions/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CustomerStorage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CustomerStorage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../SPBMetro/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../SPBMetro/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +26,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="1aSaVLxHfbfMTFZR3TeyBickQo8" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -34,8 +36,13 @@
   </component>
   <component name="PropertiesComponent">
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559109403663" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../4/4.5/Phone" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../SPBMetro" />
     <property name="restartRequiresConfirmation" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="exceptions" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -62,29 +69,53 @@
       <option name="presentableId" value="Default" />
       <updated>1559106634874</updated>
     </task>
+    <task id="LOCAL-00001" summary="HW 8.4 done - exceptions">
+      <created>1586735623646</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1586735623646</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="HW 8.4 done - exceptions" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW 8.4 done - exceptions" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="741" y="100" key="FileChooserDialogImpl" timestamp="1586733814431">
+    <state x="234" y="4" key="#Updates" timestamp="1586776927768">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="741" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1586733814431" />
-    <state width="598" height="164" key="GridCell.Tab.0.bottom" timestamp="1586735564386">
+    <state x="234" y="4" key="#Updates/0.0.1280.689@0.0.1280.689" timestamp="1586776927768" />
+    <state x="229" y="0" key="CommitChangelistDialog2" timestamp="1586735619700">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="598" height="164" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1586735564386" />
-    <state width="598" height="164" key="GridCell.Tab.0.center" timestamp="1586735564386">
+    <state x="229" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1586735619700" />
+    <state x="741" y="100" key="FileChooserDialogImpl" timestamp="1586777594482">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="598" height="164" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1586735564386" />
-    <state width="598" height="164" key="GridCell.Tab.0.left" timestamp="1586735564386">
+    <state x="741" y="100" key="FileChooserDialogImpl/0.0.1280.689@0.0.1280.689" timestamp="1586777594482" />
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom" timestamp="1586785346095">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="598" height="164" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1586735564386" />
-    <state width="598" height="164" key="GridCell.Tab.0.right" timestamp="1586735564386">
+    <state width="1237" height="166" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1586785346095" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center" timestamp="1586785346094">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="598" height="164" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1586735564386" />
+    <state width="1237" height="166" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1586785346094" />
+    <state width="1237" height="166" key="GridCell.Tab.0.left" timestamp="1586785346094">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1586785346094" />
+    <state width="1237" height="166" key="GridCell.Tab.0.right" timestamp="1586785346094">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state width="1237" height="166" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1586785346094" />
+    <state x="466" y="78" key="Vcs.Push.Dialog.v2" timestamp="1586735628912">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="466" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1586735628912" />
     <state x="617" y="155" key="run.anything.popup" timestamp="1586735432363">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
