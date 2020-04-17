@@ -8,8 +8,9 @@
       <change beforePath="$PROJECT_DIR$/../ConsoleCustomerList/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ConsoleCustomerList/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ConsoleCustomerList/out/production/ConsoleCustomerList/CustomerStorage.class" beforeDir="false" afterPath="$PROJECT_DIR$/../ConsoleCustomerList/out/production/ConsoleCustomerList/CustomerStorage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/RouteCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/RouteCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../4/4.5/StringExperiments/out/production/StringExperiments/Loader.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +64,7 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.All in SPBMetro">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="SPBMetro" />
@@ -90,11 +91,14 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.All in SPBMetro" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.All in SPBMetro" />
         <item itemvalue="JUnit.RouteCalculatorTest" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="showServicesTree" value="false" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -107,7 +111,19 @@
       <option name="presentableId" value="Default" />
       <updated>1559569584327</updated>
     </task>
+    <task id="LOCAL-00001" summary="HW 8.8 done - SPBmetro RouteCalculator fixes">
+      <created>1587068582008</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1587068582008</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="HW 8.8 done - SPBmetro RouteCalculator fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="HW 8.8 done - SPBmetro RouteCalculator fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="233" y="4" key="#Project_Structure" timestamp="1587054655597">
@@ -118,26 +134,26 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state x="446" y="55" key="#com.intellij.ide.util.MemberChooser/0.0.1280.689@0.0.1280.689" timestamp="1587067396955" />
-    <state x="201" y="0" key="CommitChangelistDialog2" timestamp="1587068481831">
+    <state x="201" y="0" key="CommitChangelistDialog2" timestamp="1587139180733">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="201" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1587068481831" />
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom" timestamp="1587068532708">
+    <state x="201" y="0" key="CommitChangelistDialog2/0.0.1280.689@0.0.1280.689" timestamp="1587139180733" />
+    <state width="1237" height="233" key="GridCell.Tab.0.bottom" timestamp="1587139164957">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1587068532708" />
-    <state width="1237" height="116" key="GridCell.Tab.0.center" timestamp="1587068532708">
+    <state width="1237" height="233" key="GridCell.Tab.0.bottom/0.0.1280.689@0.0.1280.689" timestamp="1587139164957" />
+    <state width="1237" height="233" key="GridCell.Tab.0.center" timestamp="1587139164956">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1587068532708" />
-    <state width="1237" height="116" key="GridCell.Tab.0.left" timestamp="1587068532708">
+    <state width="1237" height="233" key="GridCell.Tab.0.center/0.0.1280.689@0.0.1280.689" timestamp="1587139164956" />
+    <state width="1237" height="233" key="GridCell.Tab.0.left" timestamp="1587139164956">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1587068532708" />
-    <state width="1237" height="116" key="GridCell.Tab.0.right" timestamp="1587068532708">
+    <state width="1237" height="233" key="GridCell.Tab.0.left/0.0.1280.689@0.0.1280.689" timestamp="1587139164956" />
+    <state width="1237" height="233" key="GridCell.Tab.0.right" timestamp="1587139164956">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state width="1237" height="116" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1587068532708" />
+    <state width="1237" height="233" key="GridCell.Tab.0.right/0.0.1280.689@0.0.1280.689" timestamp="1587139164956" />
     <state width="1237" height="233" key="GridCell.Tab.1.bottom" timestamp="1587063763292">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
@@ -154,10 +170,14 @@
       <screen x="0" y="0" width="1280" height="689" />
     </state>
     <state width="1237" height="233" key="GridCell.Tab.1.right/0.0.1280.689@0.0.1280.689" timestamp="1587063763292" />
-    <state x="450" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587068342024">
+    <state x="233" y="78" key="Vcs.Push.Dialog.v2" timestamp="1587068594647">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
-    <state x="450" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1587068342024" />
+    <state x="233" y="78" key="Vcs.Push.Dialog.v2/0.0.1280.689@0.0.1280.689" timestamp="1587068594647" />
+    <state x="450" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1587139183986">
+      <screen x="0" y="0" width="1280" height="689" />
+    </state>
+    <state x="450" y="262" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1280.689@0.0.1280.689" timestamp="1587139183986" />
     <state x="215" y="81" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1587062906625">
       <screen x="0" y="0" width="1280" height="689" />
     </state>
