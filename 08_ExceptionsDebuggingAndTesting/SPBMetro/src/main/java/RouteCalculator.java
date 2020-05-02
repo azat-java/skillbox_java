@@ -26,7 +26,9 @@ public class RouteCalculator {
         }
 
         route = getRouteWithTwoConnections(from, to);
-        routes.add(route);
+        if (route != null) {
+            routes.add(route);
+        }
 
         return routes.first();
     }
@@ -150,7 +152,9 @@ public class RouteCalculator {
                 }
             }
         }
-
-        return route;
+        if (route.size() > 0) {
+            return route;
+        }
+        return null;
     }
 }
