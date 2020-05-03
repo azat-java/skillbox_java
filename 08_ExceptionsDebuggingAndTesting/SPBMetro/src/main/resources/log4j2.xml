@@ -1,32 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration status="WARN">
+<configuration status="INFO">
     <appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-
         <File name="CorrectInput" fileName="logs/correct-input.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <MarkerFilter marker="INPUT_HISTORY"/>
+            </Filters>
         </File>
         <File name="InputErrors" fileName="logs/input-errors.log">
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <Filters>
+                <MarkerFilter marker="INVALID_STATIONS"/>
+            </Filters>
         </File>
         <File name="Exceptions" fileName="logs/exceptions.log">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </File>
     </appenders>
-
     <loggers>
-        <logger name="CorrectInput" level="trace">
-            <appender-ref ref="CorrectInput" level="info"/>
-        </logger>
-        <logger name="InputErrors" level="trace">
-            <appender-ref ref="InputErrors" level="info"/>
-        </logger>
-        <logger name="Exceptions" level="trace">
-            <appender-ref ref="Exceptions" level="info"/>
-        </logger>
-        <Root level="trace">
+        <Root level="info">
+            <appender-ref ref="Exceptions"/>
+            <appender-ref ref="CorrectInput"/>
+            <appender-ref ref="InputErrors"/>
         </Root>
     </loggers>
 </configuration>
