@@ -2,7 +2,9 @@ import core.Line;
 import core.Station;
 import junit.framework.TestCase;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RouteCalculatorTest extends TestCase {
@@ -95,43 +97,61 @@ public class RouteCalculatorTest extends TestCase {
     }
 
     public void test_distance_to_same_station() {
-        List<Station> route = calculator.getShortestRoute(s1, s1);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s1, s1);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s1));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 0;
         assertEquals(expectedDuration, actualDuration);
     }
 
     public void test_stations_next_to_each_other_on_single_line() {
-        List<Station> route = calculator.getShortestRoute(s1, s2);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s1, s2);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s1, s2));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 2.5;
         assertEquals(expectedDuration, actualDuration);
     }
 
     public void test_stations_on_single_line_backwards() {
-        List<Station> route = calculator.getShortestRoute(s3, s1);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s3, s1);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s3, s2, s1));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 5;
         assertEquals(expectedDuration, actualDuration);
     }
 
     public void test_opposite_stations_on_single_line() {
-        List<Station> route = calculator.getShortestRoute(s1, s6);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s1, s6);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s1, s2, s3, s4, s5, s6));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 12.5;
         assertEquals(expectedDuration, actualDuration);
     }
 
     public void test_opposite_stations_with_one_transfer() {
-        List<Station> route = calculator.getShortestRoute(s1, s7);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s1, s7);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s1, s2, s3, s4, s8, s7));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 13.5;
         assertEquals(expectedDuration, actualDuration);
     }
 
     public void test_opposite_stations_with_two_transfers() {
-        List<Station> route = calculator.getShortestRoute(s6, s14);
-        double actualDuration = RouteCalculator.calculateDuration(route);
+        List<Station> actualRoute = calculator.getShortestRoute(s6, s14);
+        List<Station> expectedRoute = new ArrayList<>(Arrays.asList(s6, s5, s4, s8, s9, s10, s12, s13, s14));
+        assertEquals(expectedRoute, actualRoute);
+
+        double actualDuration = RouteCalculator.calculateDuration(actualRoute);
         double expectedDuration = 22;
         assertEquals(expectedDuration, actualDuration);
     }
