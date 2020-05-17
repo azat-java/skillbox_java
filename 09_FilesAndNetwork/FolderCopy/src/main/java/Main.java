@@ -1,8 +1,10 @@
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
 import java.util.Scanner;
 import java.util.stream.Stream;
 
+import exceptions.DestinationInSourceException;
 import exceptions.FolderNotEmptyException;
 
 public class Main {
@@ -21,7 +23,7 @@ public class Main {
             }
             System.out.println("Введите путь до места, куда будет скопирована папка:");
             Path destinationFolder = Paths.get(scanner.nextLine().trim());
-            while (!getDestinationFolder(destinationFolder)) {
+            while (!getDestinationFolder(sourceFolder, destinationFolder)) {
                 destinationFolder = Paths.get(scanner.nextLine().trim());
             }
             scanner.close();
@@ -34,12 +36,16 @@ public class Main {
         System.out.printf("Количество скопированных файлов: %d\n", totalFilesCount);
     }
 
-    static boolean getDestinationFolder(Path destinationFolder) {
+    static boolean getDestinationFolder(Path sourceFolder, Path destinationFolder) {
         try {
-            if (!destinationFolder.toFile().isDirectory()) {
-                System.out.println("Новая папка успешно создана");
-            } else if (Files.list(destinationFolder).findAny().isPresent()) {
-                throw new FolderNotEmptyException();
+            if(!destinationFolder.startsWith(sourceFolder)) {
+                if (!Files.isDirectory(destinationFolder)) {
+                    System.out.println("Новая папка успешно создана");
+                } else if (Files.list(destinationFolder).findAny().isPresent()) {
+                    throw new FolderNotEmptyException();
+                }
+            } else {
+                throw new DestinationInSourceException();
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
