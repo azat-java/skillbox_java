@@ -55,12 +55,14 @@ public class Main {
     }
 
     static void copyFolder(Path src, Path dest) {
-        try (Stream<Path> stream = Files.walk(src)) {
-            stream.forEach(source -> {
-                copy(source, dest.resolve(src.relativize(source)));
-            });
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(!dest.startsWith(src)) {
+            try (Stream<Path> stream = Files.walk(src)) {
+                stream.forEach(source -> {
+                    copy(source, dest.resolve(src.relativize(source)));
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
