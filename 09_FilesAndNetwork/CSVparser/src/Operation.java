@@ -1,21 +1,15 @@
 import java.math.BigDecimal;
-import java.util.TreeMap;
 
 public class Operation {
     private OperationType type;
     private String expenseType;
 
     private BigDecimal amount;
-    static TreeMap<Integer, String> expenseTypes = new TreeMap<>();
 
-    public Operation(OperationType type, Integer mcc, BigDecimal amount) {
+    public Operation(OperationType type, String expenseType, BigDecimal amount) {
         this.type = type;
+        this.expenseType = expenseType;
         this.amount = amount;
-        if (expenseTypes.get(mcc) != null) {
-            expenseType = expenseTypes.get(mcc);
-        } else {
-            expenseType = "Доход";
-        }
     }
 
     public OperationType getType() {

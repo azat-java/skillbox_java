@@ -1,50 +1,35 @@
 import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main {
     private static final String MOVEMENT_FILE = "data/movementList.csv";
+    static List<MCC> expenseTypes = new ArrayList<>();
 
     public static void main(String[] args) {
-        Operation.expenseTypes.put(6536, "Денежные переводы");
-        Operation.expenseTypes.put(5814, "Рестораны-закусочные");
-        Operation.expenseTypes.put(6011, "Снятие наличности");
-        Operation.expenseTypes.put(4121, "Лимузины и такси");
-        Operation.expenseTypes.put(6538, "Денежные переводы");
-        Operation.expenseTypes.put(5812, "Рестораны-закусочные");
-        Operation.expenseTypes.put(7399, "Бизнес–сервис");
-        Operation.expenseTypes.put(5995, "Зоомагазины");
-        Operation.expenseTypes.put(5411, "Супермаркеты");
-        Operation.expenseTypes.put(5968, "Прямой маркетинг – Торговые точки подписки");
-        Operation.expenseTypes.put(5977, "Магазины косметики");
-        Operation.expenseTypes.put(5818, "Цифровые товары");
-        Operation.expenseTypes.put(7372, "Программирование, дизайн");
-        Operation.expenseTypes.put(5691, "Магазины одежды");
+        expenseTypes.add(new MCC(6536, "Денежные переводы"));
+        expenseTypes.add(new MCC(5814, "Рестораны-закусочные"));
+        expenseTypes.add(new MCC(6011, "Снятие наличности"));
+        expenseTypes.add(new MCC(4121, "Лимузины и такси"));
+        expenseTypes.add(new MCC(6538, "Денежные переводы"));
+        expenseTypes.add(new MCC(5812, "Рестораны-закусочные"));
+        expenseTypes.add(new MCC(7399, "Бизнес–сервис"));
+        expenseTypes.add(new MCC(5995, "Зоомагазины"));
+        expenseTypes.add(new MCC(5411, "Супермаркеты"));
+        expenseTypes.add(new MCC(5968, "Прямой маркетинг – Торговые точки подписки"));
+        expenseTypes.add(new MCC(5977, "Магазины косметики"));
+        expenseTypes.add(new MCC(5818, "Цифровые товары"));
+        expenseTypes.add(new MCC(7372, "Программирование, дизайн"));
+        expenseTypes.add(new MCC(5691, "Магазины одежды"));
 
-        ArrayList<Operation> operations = loadOperationsFromFile();
+        List<Operation> operations = loadOperationsFromFile();
 
-        BigDecimal totalIncome = new BigDecimal(0);
-        BigDecimal totalExpense = new BigDecimal(0);
-        Map<String, BigDecimal> expenseByType = new TreeMap<>();
-
-        for (Operation operation : operations) {
-            if (operation.getType().equals(OperationType.INCOME)) {
-                totalIncome = totalIncome.add(operation.getAmount());
-            } else {
-                totalExpense = totalExpense.add(operation.getAmount());
-                BigDecimal oldExpenseByType = expenseByType.get(operation.getExpenseType());
-                if (oldExpenseByType == null) {
-                    oldExpenseByType = new BigDecimal(0);
-                }
-                expenseByType.put(operation.getExpenseType(), oldExpenseByType.add(operation.getAmount()));
-            }
-        }
+        BigDecimal totalIncome = getIncomeSum(operations);
+        BigDecimal totalExpense = getExpenseSum(operations);
+        Map<String, BigDecimal> expenseByType = getExpenseByType(operations);
 
         System.out.println("Сводная информация по банковской выписке:");
         System.out.println("------------------------------------------");
@@ -52,15 +37,14 @@ public class Main {
         System.out.println("Общий расход: " + totalExpense + " руб.");
         System.out.println("\nРасходы по категориям:");
         System.out.println("-------------------------");
-        BigDecimal check = new BigDecimal(0);
         for (Map.Entry<String, BigDecimal>
                 type : expenseByType.entrySet()) {
             System.out.println(type.getKey() + ": " + type.getValue() + " руб.");
         }
     }
 
-    private static ArrayList<Operation> loadOperationsFromFile() {
-        ArrayList<Operation> operations = new ArrayList<>();
+    private static List<Operation> loadOperationsFromFile() {
+        List<Operation> operations = new ArrayList<>();
         try {
             List<String> lines = Files.readAllLines(Paths.get(MOVEMENT_FILE));
             for (String line : lines) {
@@ -90,7 +74,7 @@ public class Main {
 
                 operations.add(new Operation(
                         type,
-                        mcc,
+                        getExpenseType(mcc),
                         amount
                 ));
             }
@@ -98,5 +82,55 @@ public class Main {
             ex.printStackTrace();
         }
         return operations;
+    }
+
+    private static String getExpenseType(Integer mcc) {
+        Iterator<MCC> itr = expenseTypes.iterator();
+
+        while (itr.hasNext()) {
+            MCC current = itr.next();
+            if (current.getId().equals(mcc)) {
+                return current.getDescription();
+            }
+            ;
+        }
+        return "Прочие расходы";
+    }
+
+    private static BigDecimal getIncomeSum(List<Operation> operations) {
+        BigDecimal totalIncome = new BigDecimal(0);
+
+        for (Operation operation : operations) {
+            if (operation.getType().equals(OperationType.INCOME)) {
+                totalIncome = totalIncome.add(operation.getAmount());
+            }
+        }
+        return totalIncome;
+    }
+
+    private static BigDecimal getExpenseSum(List<Operation> operations) {
+        BigDecimal totalExpense = new BigDecimal(0);
+
+        for (Operation operation : operations) {
+            if (operation.getType().equals(OperationType.EXPENSE)) {
+                totalExpense = totalExpense.add(operation.getAmount());
+            }
+        }
+        return totalExpense;
+    }
+
+    private static Map getExpenseByType(List<Operation> operations) {
+        Map<String, BigDecimal> expenseByType = new TreeMap<>();
+
+        for (Operation operation : operations) {
+            if (operation.getType().equals(OperationType.EXPENSE)) {
+                BigDecimal oldExpenseByType = expenseByType.get(operation.getExpenseType());
+                if (oldExpenseByType == null) {
+                    oldExpenseByType = new BigDecimal(0);
+                }
+                expenseByType.put(operation.getExpenseType(), oldExpenseByType.add(operation.getAmount()));
+            }
+        }
+        return expenseByType;
     }
 }
