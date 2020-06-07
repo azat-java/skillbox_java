@@ -92,30 +92,23 @@ public class Main {
             if (current.getId().equals(mcc)) {
                 return current.getDescription();
             }
-            ;
         }
         return "Прочие расходы";
     }
 
     private static BigDecimal getIncomeSum(List<Operation> operations) {
-        BigDecimal totalIncome = new BigDecimal(0);
-
-        for (Operation operation : operations) {
-            if (operation.getType().equals(OperationType.INCOME)) {
-                totalIncome = totalIncome.add(operation.getAmount());
-            }
-        }
+        BigDecimal totalIncome = operations.stream()
+                .filter(operation -> operation.getType().equals(OperationType.INCOME))
+                .map(operation -> operation.getAmount())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalIncome;
     }
 
     private static BigDecimal getExpenseSum(List<Operation> operations) {
-        BigDecimal totalExpense = new BigDecimal(0);
-
-        for (Operation operation : operations) {
-            if (operation.getType().equals(OperationType.EXPENSE)) {
-                totalExpense = totalExpense.add(operation.getAmount());
-            }
-        }
+        BigDecimal totalExpense = operations.stream()
+                .filter(operation -> operation.getType().equals(OperationType.EXPENSE))
+                .map(operation -> operation.getAmount())
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
         return totalExpense;
     }
 
