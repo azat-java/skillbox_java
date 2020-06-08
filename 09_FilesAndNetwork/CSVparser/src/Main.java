@@ -2,6 +2,7 @@ import java.math.BigDecimal;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,8 +28,10 @@ public class Main {
 
         List<Operation> operations = loadOperationsFromFile();
 
-        BigDecimal totalIncome = getIncomeSum(operations);
-        BigDecimal totalExpense = getExpenseSum(operations);
+        Predicate<Operation> isIncomePredicate = (o) -> o.getType().equals(OperationType.INCOME);
+        BigDecimal totalIncome = getOperationsSum(operations, isIncomePredicate);
+        Predicate<Operation> isExpensePredicate = (o) -> o.getType().equals(OperationType.EXPENSE);
+        BigDecimal totalExpense = getOperationsSum(operations, isExpensePredicate);
         Map<String, BigDecimal> expenseByType = getExpenseByType(operations);
 
         System.out.println("Сводная информация по банковской выписке:");
@@ -41,6 +44,11 @@ public class Main {
                 type : expenseByType.entrySet()) {
             System.out.println(type.getKey() + ": " + type.getValue() + " руб.");
         }
+
+        Predicate<Operation> isSupermarketsMCCPredicate = (o) -> o.getExpenseType().equals("Супермаркеты");
+        BigDecimal supermarketsExpenses = getOperationsSum(operations, isSupermarketsMCCPredicate);
+        System.out.println("\nРасходы по категории \"Супермаркеты\":");
+        System.out.println(supermarketsExpenses + " руб.");
     }
 
     private static List<Operation> loadOperationsFromFile() {
@@ -85,10 +93,7 @@ public class Main {
     }
 
     private static String getExpenseType(Integer mcc) {
-        Iterator<MCC> itr = expenseTypes.iterator();
-
-        while (itr.hasNext()) {
-            MCC current = itr.next();
+        for (MCC current : expenseTypes) {
             if (current.getId().equals(mcc)) {
                 return current.getDescription();
             }
@@ -96,23 +101,14 @@ public class Main {
         return "Прочие расходы";
     }
 
-    private static BigDecimal getIncomeSum(List<Operation> operations) {
-        BigDecimal totalIncome = operations.stream()
-                .filter(operation -> operation.getType().equals(OperationType.INCOME))
-                .map(operation -> operation.getAmount())
+    private static BigDecimal getOperationsSum(List<Operation> operations, Predicate<Operation> predicate) {
+        return operations.stream()
+                .filter(predicate)
+                .map(Operation::getAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return totalIncome;
     }
 
-    private static BigDecimal getExpenseSum(List<Operation> operations) {
-        BigDecimal totalExpense = operations.stream()
-                .filter(operation -> operation.getType().equals(OperationType.EXPENSE))
-                .map(operation -> operation.getAmount())
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
-        return totalExpense;
-    }
-
-    private static Map getExpenseByType(List<Operation> operations) {
+    private static Map<String, BigDecimal> getExpenseByType(List<Operation> operations) {
         Map<String, BigDecimal> expenseByType = new TreeMap<>();
 
         for (Operation operation : operations) {
