@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Main {
     private static final String MOVEMENT_FILE = "data/movementList.csv";
@@ -109,17 +110,9 @@ public class Main {
     }
 
     private static Map<String, BigDecimal> getExpenseByType(List<Operation> operations) {
-        Map<String, BigDecimal> expenseByType = new TreeMap<>();
-
-        for (Operation operation : operations) {
-            if (operation.getType().equals(OperationType.EXPENSE)) {
-                BigDecimal oldExpenseByType = expenseByType.get(operation.getExpenseType());
-                if (oldExpenseByType == null) {
-                    oldExpenseByType = new BigDecimal(0);
-                }
-                expenseByType.put(operation.getExpenseType(), oldExpenseByType.add(operation.getAmount()));
-            }
-        }
-        return expenseByType;
+        return operations.stream()
+                .filter(op -> op.getType().equals(OperationType.EXPENSE))
+                .collect(Collectors.groupingBy(Operation::getExpenseType,
+                         Collectors.reducing(BigDecimal.ZERO, Operation::getAmount, BigDecimal::add)));
     }
 }
