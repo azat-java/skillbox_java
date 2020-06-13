@@ -4,6 +4,9 @@ import org.jsoup.select.Elements;
 
 import java.io.*;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 public class Main {
     private static final String IMAGES_FOLDER = "./images/";
@@ -28,22 +31,15 @@ public class Main {
     }
 
     private static void saveImage(String src) throws IOException {
-        if (src.length() == 0) {
+        if (src.isBlank()) {
             return;
         }
         String name = src.substring(src.lastIndexOf("/"));
-
         System.out.println(name.substring(1));
 
         URL url = new URL(src);
-        InputStream in = url.openStream();
-
-        OutputStream out = new BufferedOutputStream(new FileOutputStream(IMAGES_FOLDER + name));
-
-        for (int b; (b = in.read()) != -1; ) {
-            out.write(b);
+        try(InputStream in = url.openStream()) {
+            Files.copy(in, Path.of(IMAGES_FOLDER, name), StandardCopyOption.REPLACE_EXISTING);
         }
-        out.close();
-        in.close();
     }
 }
