@@ -1,5 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import metro.Connection;
+import metro.Line;
+
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -13,6 +17,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Main {
     private static final String URL = "https://www.moscowmap.ru/metro.html#lines";
@@ -32,23 +37,23 @@ public class Main {
         }
     }
 
-    private static Map createMetroMap() throws IOException {
+    private static Map<String, Object> createMetroMap() throws IOException {
         Document doc = Jsoup.parse(Jsoup.connect(URL).get().toString());
-        ArrayList<Map<String, String>> linesWithNumbers = parseLines(doc);
+        List<Line> linesWithNumbers = parseLines(doc);
         Map<String, ArrayList<String>> stationsMap = parseStations(doc);
-        Map<Integer, ArrayList<Map>> connectionsMap = parseConnections(doc);
+        Map<Integer, List<Connection>> connectionsMap = parseConnections(doc);
 
-        Map metroMap = new HashMap<>();
+        Map<String, Object> metroMap = new HashMap<>();
         metroMap.put("stations", stationsMap);
         metroMap.put("connections", connectionsMap.values().toArray());
         metroMap.put("lines", linesWithNumbers);
         return metroMap;
     }
 
-    private static ArrayList<Map<String, String>> parseLines(Document doc) {
+    private static List<Line> parseLines(Document doc) {
         Elements lines = doc.getElementsByClass("js-metro-line");
-        ArrayList<Map<String, String>> linesWithNumbers = new ArrayList<>();
-        lines.forEach(line -> linesWithNumbers.add(Map.of("number", line.dataset().get("line"), "name", line.text())));
+        List<Line> linesWithNumbers = new ArrayList<>();
+        lines.forEach(line -> linesWithNumbers.add(new Line(line.text(), line.dataset().get("line"))));
         return linesWithNumbers;
     }
 
@@ -66,26 +71,24 @@ public class Main {
         return stationsMap;
     }
 
-    private static Map<Integer, ArrayList<Map>> parseConnections(Document doc) {
+    private static Map<Integer, List<Connection>> parseConnections(Document doc) {
         Elements connectionsElements = doc.getElementsByClass("t-icon-metroln");
-        ArrayList<Element> connections = new ArrayList<>();
-        connectionsElements.stream().filter(connection -> !connection.hasClass("t-metrostation-list-header"))
-                .forEach(connection -> connections.add(connection));
-        Map<Integer, ArrayList<Map>> connectionsMap = new HashMap<>();
+        List<Element> connections = connectionsElements.stream().filter(connection -> !connection.hasClass("t-metrostation-list-header"))
+                .collect(Collectors.toList());
+        Map<Integer, List<Connection>> connectionsMap = new HashMap<>();
         AtomicInteger key = new AtomicInteger();
         connections.forEach(connection -> {
             String connectionTitle = connection.attr("title");
             String stationName = connectionTitle.substring(connectionTitle.indexOf('«') + 1, connectionTitle.indexOf('»'));
             String HTMLclass = connection.className();
-            Map<String, String> currentConnection = Map.of(
-                    "line", HTMLclass.substring(HTMLclass.lastIndexOf("ln-") + 3),
-                    "station", stationName);
+            Connection currentConnection = new Connection(stationName, HTMLclass.substring(HTMLclass.lastIndexOf("ln-") + 3));
             //  every new connections array starts with station, which has "name" html class
             if (connection.previousElementSibling().hasClass("name")) {
                 key.getAndIncrement();
-                connectionsMap.put(key.intValue(), new ArrayList<>(Arrays.asList(Map.of(
-                        "line", connection.closest(".t-metrostation-list-table").attr("data-line"),
-                        "station", connection.previousElementSibling().text()), currentConnection
+                connectionsMap.put(key.intValue(), new ArrayList<>(Arrays.asList(
+                        new Connection(connection.previousElementSibling().text(),
+                                connection.closest(".t-metrostation-list-table").attr("data-line")),
+                        currentConnection
                 )));
             } else {
                 connectionsMap.get(key.intValue()).add(currentConnection);
@@ -95,16 +98,16 @@ public class Main {
         return connectionsMap;
     }
 
-    private static void createJson(Map<String, Map> map, String mapFile) throws IOException {
-        Gson gson = new GsonBuilder().create();
-        String json = gson.toJson(map);
-        FileWriter writer = new FileWriter(mapFile);
-        writer.write(json);
-        writer.close();
+    private static void createJson(Map<String, Object> map, String mapFile) throws IOException {
+        try (FileWriter writer = new FileWriter(mapFile)) {
+            Gson gson = new GsonBuilder().create();
+            JsonElement json = gson.toJsonTree(map);
+            writer.write(String.valueOf(json));
+        }
     }
 
     private static Map<String, String> readLines(JSONObject jsonMetroMap) {
-        ArrayList<Map<String, String>> lines = (ArrayList<Map<String, String>>) jsonMetroMap.get("lines");
+        List<Map<String, String>> lines = (List<Map<String, String>>) jsonMetroMap.get("lines");
         Map<String, String> linesMap = new HashMap<>();
         lines.forEach(line -> linesMap.put(line.get("number"), line.get("name")));
         return linesMap;
@@ -112,7 +115,7 @@ public class Main {
 
     private static Map<String, Integer> countStations(JSONObject jsonMetroMap, Map<String, String> linesMap) {
         Map<String, Integer> stationsCount = new HashMap<>();
-        Map<String, ArrayList<String>> stationsToCount = (Map<String, ArrayList<String>>) jsonMetroMap.get("stations");
+        Map<String, List<String>> stationsToCount = (Map<String, List<String>>) jsonMetroMap.get("stations");
         stationsToCount.keySet().forEach(stations -> stationsCount.put(linesMap.get(stations), stationsToCount.get(stations).size()));
         return stationsCount;
     }
