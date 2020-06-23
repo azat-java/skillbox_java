@@ -19,7 +19,10 @@
         <property name="current_session_context_class">thread</property>
         <!-- Drop and re-create the database schema on startup -->
         <property name="hbm2ddl.auto">validate</property>
-        <mapping class="dataBase.Course"/>
+        <mapping class="dataBase.course.Course"/>
         <mapping class="dataBase.Student"/>
+        <mapping class="dataBase.subscription.Subscription"/>
+        <mapping class="dataBase.Teacher"/>
+        <mapping class="dataBase.purchase.Purchase"/>
     </session-factory>
 </hibernate-configuration>
