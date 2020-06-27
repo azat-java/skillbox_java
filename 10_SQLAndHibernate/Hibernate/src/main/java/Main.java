@@ -1,6 +1,6 @@
 import dataBase.course.Course;
 import dataBase.Student;
-import dataBase.subscription.Subscription;
+import dataBase.Subscription;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

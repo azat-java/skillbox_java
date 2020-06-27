@@ -1,7 +1,6 @@
 package dataBase;
 
 import dataBase.course.Course;
-import dataBase.subscription.Subscription;
 
 import javax.persistence.*;
 import java.util.Date;

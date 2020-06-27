@@ -1,18 +1,19 @@
-package dataBase.purchase;
+package dataBase;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "PurchaseList")
-@IdClass(PurchasePK.class)
 public class Purchase {
-    @Id
-    @Column(name = "student_name")
+    @EmbeddedId
+    private PurchasePK id;
+
+    @Column(name = "student_name", insertable = false, updatable = false)
     private String studentName;
 
-    @Id
-    @Column(name = "course_name")
+    @Column(name = "course_name", insertable = false, updatable = false)
     private String courseName;
 
     private int price;
@@ -51,5 +52,22 @@ public class Purchase {
 
     public void setSubscriptionDate(Date subscriptionDate) {
         this.subscriptionDate = subscriptionDate;
+    }
+
+    @Embeddable
+    public class PurchasePK implements Serializable {
+        @Column(name = "student_name")
+        protected String studentName;
+
+        @Column(name = "course_name")
+        protected String courseName;
+
+        public PurchasePK() {
+        }
+
+        public PurchasePK(String studentName, String courseName) {
+            this.studentName = studentName;
+            this.courseName = courseName;
+        }
     }
 }

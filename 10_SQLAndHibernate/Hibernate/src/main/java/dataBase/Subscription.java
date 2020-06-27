@@ -1,27 +1,26 @@
-package dataBase.subscription;
-
-import dataBase.Student;
+package dataBase;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "Subscriptions")
-@IdClass(SubscriptionPK.class)
 public class Subscription {
-    @Id
-    @Column(name = "student_id")
+    @EmbeddedId
+    private SubscriptionPK id;
+
+    @Column(name = "student_id", insertable = false, updatable = false)
     private int studentId;
 
-    @Id
-    @Column(name = "course_id")
+    @Column(name = "course_id", insertable = false, updatable = false)
     private int courseId;
 
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "student_id", insertable=false, updatable=false)
+    @JoinColumn(name = "student_id", insertable = false, updatable = false)
     private Student student;
 
 
@@ -47,5 +46,26 @@ public class Subscription {
 
     public void setSubscriptionDate(Date subscriptionDate) {
         this.subscriptionDate = subscriptionDate;
+    }
+
+    public Subscription() {
+    }
+
+    @Embeddable
+    public static class SubscriptionPK implements Serializable {
+        @Column(name = "student_id")
+        protected int studentId;
+
+        @Column(name = "course_id")
+        protected int courseId;
+
+
+        public SubscriptionPK() {
+        }
+
+        public SubscriptionPK(int studentId, int courseId) {
+            this.studentId = studentId;
+            this.courseId = courseId;
+        }
     }
 }
