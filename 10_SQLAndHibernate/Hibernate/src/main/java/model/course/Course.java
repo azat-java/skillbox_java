@@ -1,8 +1,8 @@
-package dataBase.course;
+package model.course;
 
 
-import dataBase.Student;
-import dataBase.Teacher;
+import model.Student;
+import model.Teacher;
 
 import javax.persistence.*;
 import java.util.List;
@@ -24,11 +24,11 @@ public class Course {
 
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Teacher teacher;
 
-    @Column(name = "students_count")
-    private int studentsCount;
+    @Column(name = "students_count", nullable = true)
+    private Integer studentsCount;
 
     private int price;
 

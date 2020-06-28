@@ -1,6 +1,6 @@
-package dataBase;
+package model;
 
-import dataBase.course.Course;
+import model.course.Course;
 
 import javax.persistence.*;
 import java.util.Date;

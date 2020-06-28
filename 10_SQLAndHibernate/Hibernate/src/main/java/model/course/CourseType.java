@@ -1,4 +1,4 @@
-package dataBase.course;
+package model.course;
 
 public enum CourseType {
     DESIGN,

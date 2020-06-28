@@ -1,12 +1,22 @@
-import dataBase.course.Course;
-import dataBase.Student;
-import dataBase.Subscription;
+import model.LinkedPurchaseList;
+import model.Purchase;
+import model.Student;
+import model.Subscription;
+import model.course.Course;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -26,6 +36,33 @@ public class Main {
         Course course2 = session.get(Course.class, subscription.getCourseId());
         System.out.printf("Данный студент также учится на курсе \"%s\" с %s\n", course2.getName(), subscription.getSubscriptionDate());
 
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        Map<String, Integer> studentsMap = getAllRecords(session, builder, Student.class)
+                .stream().collect(Collectors.toMap(Student::getName, Student::getId));
+
+        Map<String, Integer> coursesMap = getAllRecords(session, builder, Course.class)
+                .stream().collect(Collectors.toMap(Course::getName, Course::getId));
+
+        List<Purchase> purchaseList = getAllRecords(session, builder, Purchase.class);
+        for (Purchase purchase : purchaseList) {
+            addRecord(session, studentsMap.get(purchase.getStudentName()), coursesMap.get(purchase.getCourseName()));
+        }
         sessionFactory.close();
+    }
+
+    static <T> List<T> getAllRecords(Session session, CriteriaBuilder builder, Class<T> t) {
+        CriteriaQuery<T> query = builder.createQuery(t);
+        Root<T> root = query.from(t);
+        query.select(root);
+        return session.createQuery(query).getResultList();
+    }
+
+    static void addRecord(Session session, int studentId, int courseId) {
+        Transaction transaction = session.beginTransaction();
+        LinkedPurchaseList element = new LinkedPurchaseList(studentId, courseId);
+        session.save(element);
+        transaction.commit();
     }
 }

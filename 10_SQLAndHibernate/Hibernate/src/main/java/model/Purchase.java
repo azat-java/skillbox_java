@@ -1,8 +1,9 @@
-package dataBase;
+package model;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "PurchaseList")
@@ -54,8 +55,25 @@ public class Purchase {
         this.subscriptionDate = subscriptionDate;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Purchase purchase = (Purchase) o;
+        return price == purchase.price &&
+                id.equals(purchase.id) &&
+                studentName.equals(purchase.studentName) &&
+                courseName.equals(purchase.courseName) &&
+                subscriptionDate.equals(purchase.subscriptionDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, studentName, courseName, price, subscriptionDate);
+    }
+
     @Embeddable
-    public class PurchasePK implements Serializable {
+    public static class PurchasePK implements Serializable {
         @Column(name = "student_name")
         protected String studentName;
 
