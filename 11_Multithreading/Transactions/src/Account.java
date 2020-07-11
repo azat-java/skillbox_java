@@ -3,7 +3,6 @@ public class Account {
     private long money;
     private boolean isBlocked;
 
-
     public Account(String accNumber, long money) {
         this.accNumber = accNumber;
         this.money = money;
@@ -31,5 +30,9 @@ public class Account {
 
     public void setBlocked(boolean blocked) {
         isBlocked = blocked;
+    }
+
+    public int compareTo(Account toAccount) {
+        return this.getAccNumber().compareTo(toAccount.getAccNumber());
     }
 }
