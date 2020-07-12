@@ -27,28 +27,31 @@ public class Bank {
      * счетов (как – на ваше усмотрение)
      */
     public void transfer(Account fromAccount, Account toAccount, long amount) {
-        if (fromAccount != toAccount && !fromAccount.isBlocked() && !toAccount.isBlocked() && fromAccount.getMoney() >= amount) {
-            synchronized (fromAccount.compareTo(toAccount) > 0 ? fromAccount : toAccount) {
-                synchronized (fromAccount.compareTo(toAccount) < 0 ? fromAccount : toAccount) {
-                    fromAccount.setMoney(fromAccount.getMoney() - amount);
-                    toAccount.setMoney(toAccount.getMoney() + amount);
+        synchronized (fromAccount.compareTo(toAccount) > 0 ? fromAccount : toAccount) {
+            synchronized (fromAccount.compareTo(toAccount) < 0 ? fromAccount : toAccount) {
+                if (fromAccount == toAccount) {
+                    return;
                 }
-            }
-        } else
-            return;
+                if (fromAccount.isBlocked() || toAccount.isBlocked()) {
+                    return;
+                }
+                if (fromAccount.getMoney() < amount) {
+                    return;
+                }
 
-        if (amount > 50000) {
-            try {
-                if (isFraud(fromAccount, toAccount, amount)) {
-                    synchronized (fromAccount.compareTo(toAccount) > 0 ? fromAccount : toAccount) {
-                        synchronized (fromAccount.compareTo(toAccount) < 0 ? fromAccount : toAccount) {
+                fromAccount.setMoney(fromAccount.getMoney() - amount);
+                toAccount.setMoney(toAccount.getMoney() + amount);
+
+                if (amount > 50000) {
+                    try {
+                        if (isFraud(fromAccount, toAccount, amount)) {
                             fromAccount.setBlocked(true);
                             toAccount.setBlocked(true);
                         }
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
         }
     }
