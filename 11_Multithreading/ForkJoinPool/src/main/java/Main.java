@@ -14,10 +14,8 @@ public class Main {
         ConcurrentSkipListSet<String> siteMap = new ConcurrentSkipListSet<>();
         System.out.printf("Программа создания карты сайта %s\n\n", URL);
 
-        int processorsAmount = Runtime.getRuntime().availableProcessors();
-        for (int i = 0; i < processorsAmount; i++) {
-            new ForkJoinPool().invoke(new SiteParser(URL, URL, siteMap));
-        }
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        forkJoinPool.invoke(new SiteParser(URL, URL, siteMap));
         writeToFile(FILE_NAME, siteMap);
         System.out.printf("Карта сайта %s создана", URL);
     }
