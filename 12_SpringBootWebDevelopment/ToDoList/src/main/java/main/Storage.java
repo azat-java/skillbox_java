@@ -1,7 +1,7 @@
 package main;
 
 import org.springframework.stereotype.Service;
-import response.Task;
+import main.model.Task;
 
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
